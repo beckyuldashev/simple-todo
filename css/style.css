@@ -136,7 +136,7 @@ button {
 }
 
 .todo__list-done {
-  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-size: clamp(1.1rem, 3vw, 1.25rem);
   color: var(--clr-white);
   background-color: var(--clr-btn-done);
   border: 0;
@@ -144,13 +144,14 @@ button {
   transition: background-color .3s;
 }
 
+
 .todo__list-done:hover {
   background-color: var(--clr-btn-done-hover);
 }
 
 .todo__list-text::before {
   counter-increment: task;
-  content: 'Задача 'counter(task)')';
+  content: 'Задача 'counter(task)') ';
 }
 
 
