@@ -1,7 +1,6 @@
 const todoInput = document.querySelector('.todo__input');
 const todoAddBtn = document.querySelector('.todo__add');
 const todoContainer = document.querySelector('.todo__list');
-const todoList = [];
 
 
 function addTask(text) {
@@ -11,18 +10,26 @@ function addTask(text) {
     id: `${Math.random()}`
   };
 
+  const todoList = JSON.parse(localStorage.getItem('tasks')) ?? [];
+
   todoList.push(task);
+
+  localStorage.setItem('tasks', JSON.stringify(todoList));
 }
 
 function deleteTask(id) {
-  todoList.forEach(task => {
+  const todoList = JSON.parse(localStorage.getItem('tasks')) ?? [];
+
+  todoList.forEach((task, index) => {
     if(task.id === id) {
-      task.done = true;
+      todoList.splice(index, 1);
+      localStorage.setItem('tasks', JSON.stringify(todoList));
     }
   });
 }
 
 function renderTask() {
+  const todoList = JSON.parse(localStorage.getItem('tasks')) ?? [];
   let html = '';
 
   todoList.forEach(task => {
@@ -63,3 +70,6 @@ todoContainer.addEventListener('click', (e) => {
     renderTask();
   }
 });
+
+
+renderTask();
